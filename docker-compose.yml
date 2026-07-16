@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  myDB:
+    image: postgres:15.3
+    container_name: postgres-container
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=events-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=danpass1
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: springboot-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://myDB:5432/events-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=danpass1
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - myDB
