@@ -75,6 +75,7 @@ Se utlizó CloudSQL para el ambiente productivo, y Postgres15 para el ambiente l
 - Seguridad con Spring Security
 - JWT
 - Paginación
+- CI
 - Alta disponibilidad en Persistencia: Configurar Réplicas de Lectura en Cloud SQL distribuidas en múltiples zonas de disponibilidad,
 
 ## 12. Uso de IA
